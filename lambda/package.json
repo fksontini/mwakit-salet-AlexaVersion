@@ -1,0 +1,25 @@
+{
+  "name": "prayer-times-alexa-skill",
+  "version": "1.0.0",
+  "description": "Alexa Skill pour afficher les horaires de prière avec widget et notifications",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "alexa",
+    "prayer",
+    "salat",
+    "muslim",
+    "athan"
+  ],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "ask-sdk-core": "^2.13.0",
+    "ask-sdk-model": "^1.39.0",
+    "axios": "^1.6.0",
+    "moment": "^2.29.4",
+    "moment-timezone": "^0.5.43"
+  }
+}

@@ -1,0 +1,180 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: AWS::Serverless-2016-10-31
+Description: 'CloudFormation template for Prayer Times Alexa Skill'
+
+Parameters:
+  SkillId:
+    Type: String
+    Description: Alexa Skill ID
+  LambdaRuntime:
+    Type: String
+    Default: nodejs18.x
+  LambdaHandler:
+    Type: String
+    Default: index.handler
+  CodeBucket:
+    Type: String
+    Description: S3 bucket containing Lambda code
+  CodeKey:
+    Type: String
+    Description: S3 key for Lambda code zip
+  CodeVersion:
+    Type: String
+    Description: S3 version ID for Lambda code
+
+Resources:
+  # DynamoDB Table for User Data
+  PrayerTimesUserDataTable:
+    Type: AWS::DynamoDB::Table
+    Properties:
+      TableName: PrayerTimesUserData
+      BillingMode: PAY_PER_REQUEST
+      AttributeDefinitions:
+        - AttributeName: id
+          AttributeType: S
+      KeySchema:
+        - AttributeName: id
+          KeyType: HASH
+      StreamSpecification:
+        StreamViewType: NEW_AND_OLD_IMAGES
+      PointInTimeRecoverySpecification:
+        PointInTimeRecoveryEnabled: true
+      SSESpecification:
+        SSEEnabled: true
+      Tags:
+        - Key: Application
+          Value: PrayerTimesSkill
+        - Key: Environment
+          Value: Production
+
+  # Lambda Execution Role
+  AlexaSkillFunctionRole:
+    Type: AWS::IAM::Role
+    Properties:
+      RoleName: PrayerTimesAlexaSkillRole
+      AssumeRolePolicyDocument:
+        Version: '2012-10-17'
+        Statement:
+          - Effect: Allow
+            Principal:
+              Service:
+                - lambda.amazonaws.com
+            Action:
+              - 'sts:AssumeRole'
+      ManagedPolicyArns:
+        - arn:aws:iam::aws:policy/service-role/AWSLambdaBasicExecutionRole
+      Policies:
+        - PolicyName: DynamoDBAccess
+          PolicyDocument:
+            Version: '2012-10-17'
+            Statement:
+              - Effect: Allow
+                Action:
+                  - 'dynamodb:PutItem'
+                  - 'dynamodb:GetItem'
+                  - 'dynamodb:UpdateItem'
+                  - 'dynamodb:DeleteItem'
+                  - 'dynamodb:Query'
+                  - 'dynamodb:Scan'
+                Resource: !GetAtt PrayerTimesUserDataTable.Arn
+        - PolicyName: CloudWatchLogs
+          PolicyDocument:
+            Version: '2012-10-17'
+            Statement:
+              - Effect: Allow
+                Action:
+                  - 'logs:CreateLogGroup'
+                  - 'logs:CreateLogStream'
+                  - 'logs:PutLogEvents'
+                Resource: 'arn:aws:logs:*:*:*'
+
+  # Lambda Function
+  AlexaSkillFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      FunctionName: PrayerTimesSkill
+      Runtime: !Ref LambdaRuntime
+      Handler: !Ref LambdaHandler
+      CodeUri:
+        Bucket: !Ref CodeBucket
+        Key: !Ref CodeKey
+        Version: !Ref CodeVersion
+      Description: Lambda function for Prayer Times Alexa Skill
+      MemorySize: 512
+      Timeout: 10
+      Role: !GetAtt AlexaSkillFunctionRole.Arn
+      Environment:
+        Variables:
+          DYNAMODB_TABLE_NAME: !Ref PrayerTimesUserDataTable
+          PRAYER_API_BASE: 'http://api.aladhan.com/v1'
+          LOG_LEVEL: 'info'
+      Events:
+        AlexaSkillEvent:
+          Type: AlexaSkill
+          Properties:
+            SkillId: !Ref SkillId
+      Tags:
+        Application: PrayerTimesSkill
+        Environment: Production
+
+  # CloudWatch Log Group
+  AlexaSkillFunctionLogGroup:
+    Type: AWS::Logs::LogGroup
+    Properties:
+      LogGroupName: !Sub '/aws/lambda/${AlexaSkillFunction}'
+      RetentionInDays: 30
+
+  # CloudWatch Alarm for Errors
+  LambdaErrorAlarm:
+    Type: AWS::CloudWatch::Alarm
+    Properties:
+      AlarmName: PrayerTimesSkill-Errors
+      AlarmDescription: Alert when Lambda function has errors
+      MetricName: Errors
+      Namespace: AWS/Lambda
+      Statistic: Sum
+      Period: 300
+      EvaluationPeriods: 1
+      Threshold: 5
+      ComparisonOperator: GreaterThanThreshold
+      Dimensions:
+        - Name: FunctionName
+          Value: !Ref AlexaSkillFunction
+      TreatMissingData: notBreaching
+
+  # CloudWatch Alarm for Duration
+  LambdaDurationAlarm:
+    Type: AWS::CloudWatch::Alarm
+    Properties:
+      AlarmName: PrayerTimesSkill-SlowResponse
+      AlarmDescription: Alert when Lambda function is slow
+      MetricName: Duration
+      Namespace: AWS/Lambda
+      Statistic: Average
+      Period: 300
+      EvaluationPeriods: 2
+      Threshold: 5000
+      ComparisonOperator: GreaterThanThreshold
+      Dimensions:
+        - Name: FunctionName
+          Value: !Ref AlexaSkillFunction
+      TreatMissingData: notBreaching
+
+Outputs:
+  SkillEndpoint:
+    Description: ARN of the Lambda function to be used as Skill Endpoint
+    Value: !GetAtt AlexaSkillFunction.Arn
+    Export:
+      Name: PrayerTimesSkillEndpoint
+
+  DynamoDBTableName:
+    Description: Name of the DynamoDB table for user data
+    Value: !Ref PrayerTimesUserDataTable
+    Export:
+      Name: PrayerTimesUserDataTable
+
+  LambdaFunctionName:
+    Description: Name of the Lambda function
+    Value: !Ref AlexaSkillFunction
+    Export:
+      Name: PrayerTimesLambdaFunction
