@@ -1,0 +1,261 @@
+{
+  "interactionModel": {
+    "languageModel": {
+      "invocationName": "prayer times",
+      "intents": [
+        {
+          "name": "AMAZON.CancelIntent",
+          "samples": []
+        },
+        {
+          "name": "AMAZON.HelpIntent",
+          "samples": []
+        },
+        {
+          "name": "AMAZON.StopIntent",
+          "samples": []
+        },
+        {
+          "name": "AMAZON.NavigateHomeIntent",
+          "samples": []
+        },
+        {
+          "name": "GetPrayerTimesIntent",
+          "slots": [],
+          "samples": [
+            "what are the prayer times",
+            "tell me the prayer times",
+            "show me today's prayer times",
+            "when is prayer",
+            "prayer times",
+            "display prayer times"
+          ]
+        },
+        {
+          "name": "GetNextPrayerIntent",
+          "slots": [],
+          "samples": [
+            "when is the next prayer",
+            "what is the next prayer",
+            "tell me the next prayer",
+            "next prayer time"
+          ]
+        },
+        {
+          "name": "GetSpecificPrayerIntent",
+          "slots": [
+            {
+              "name": "prayerName",
+              "type": "PRAYER_TYPE",
+              "samples": [
+                "{prayerName}",
+                "{prayerName} prayer",
+                "time for {prayerName}"
+              ]
+            }
+          ],
+          "samples": [
+            "when is {prayerName} prayer",
+            "what time is {prayerName}",
+            "tell me {prayerName} time",
+            "{prayerName} prayer time"
+          ]
+        },
+        {
+          "name": "SetLocationIntent",
+          "slots": [
+            {
+              "name": "city",
+              "type": "AMAZON.City"
+            },
+            {
+              "name": "country",
+              "type": "AMAZON.Country"
+            }
+          ],
+          "samples": [
+            "change my location to {city}",
+            "set location to {city}",
+            "my location is {city}",
+            "I'm in {city}",
+            "update location to {city}",
+            "change city"
+          ]
+        },
+        {
+          "name": "SetAthanIntent",
+          "slots": [
+            {
+              "name": "athanType",
+              "type": "ATHAN_TYPE"
+            }
+          ],
+          "samples": [
+            "change athan to {athanType}",
+            "use {athanType} athan",
+            "I want {athanType} athan",
+            "change athan type"
+          ]
+        },
+        {
+          "name": "EnableNotificationsIntent",
+          "slots": [],
+          "samples": [
+            "enable notifications",
+            "turn on reminders",
+            "I want prayer notifications",
+            "enable athan",
+            "notify me for prayers"
+          ]
+        },
+        {
+          "name": "DisableNotificationsIntent",
+          "slots": [],
+          "samples": [
+            "disable notifications",
+            "turn off reminders",
+            "I don't want notifications",
+            "disable athan"
+          ]
+        },
+        {
+          "name": "GetQiblaDirectionIntent",
+          "slots": [],
+          "samples": [
+            "where is qibla",
+            "what is the qibla direction",
+            "show me qibla",
+            "direction to mecca",
+            "where is mecca"
+          ]
+        },
+        {
+          "name": "GetMonthlyScheduleIntent",
+          "slots": [],
+          "samples": [
+            "show monthly schedule",
+            "monthly prayer times",
+            "calendar for the month",
+            "this month's prayer times"
+          ]
+        },
+        {
+          "name": "GetDhikrIntent",
+          "slots": [],
+          "samples": [
+            "remind me a dhikr",
+            "tell me a dhikr",
+            "dhikr of the day",
+            "daily remembrance"
+          ]
+        },
+        {
+          "name": "GetDuaaIntent",
+          "slots": [
+            {
+              "name": "prayerName",
+              "type": "PRAYER_TYPE"
+            }
+          ],
+          "samples": [
+            "duaa for {prayerName}",
+            "supplication for {prayerName}",
+            "what is the duaa for {prayerName}"
+          ]
+        },
+        {
+          "name": "GetStatisticsIntent",
+          "slots": [],
+          "samples": [
+            "my statistics",
+            "show my prayer statistics",
+            "how many prayers I did",
+            "statistics"
+          ]
+        },
+        {
+          "name": "GetSettingsIntent",
+          "slots": [],
+          "samples": [
+            "what are the settings",
+            "show settings",
+            "tell me the settings",
+            "current settings"
+          ]
+        }
+      ],
+      "types": [
+        {
+          "name": "PRAYER_TYPE",
+          "values": [
+            {
+              "name": {
+                "value": "fajr",
+                "synonyms": ["dawn", "morning prayer"]
+              }
+            },
+            {
+              "name": {
+                "value": "dhuhr",
+                "synonyms": ["noon", "midday prayer"]
+              }
+            },
+            {
+              "name": {
+                "value": "asr",
+                "synonyms": ["afternoon", "afternoon prayer"]
+              }
+            },
+            {
+              "name": {
+                "value": "maghrib",
+                "synonyms": ["sunset", "evening prayer"]
+              }
+            },
+            {
+              "name": {
+                "value": "isha",
+                "synonyms": ["night", "night prayer"]
+              }
+            }
+          ]
+        },
+        {
+          "name": "ATHAN_TYPE",
+          "values": [
+            {
+              "name": {
+                "value": "makkah",
+                "synonyms": ["mecca", "makkah"]
+              }
+            },
+            {
+              "name": {
+                "value": "madinah",
+                "synonyms": ["medina", "madinah"]
+              }
+            },
+            {
+              "name": {
+                "value": "egypt",
+                "synonyms": ["egyptian"]
+              }
+            },
+            {
+              "name": {
+                "value": "aqsa",
+                "synonyms": ["al aqsa", "jerusalem"]
+              }
+            },
+            {
+              "name": {
+                "value": "abdulbasit",
+                "synonyms": ["abdul basit"]
+              }
+            }
+          ]
+        }
+      ]
+    }
+  }
+}

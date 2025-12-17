@@ -1,0 +1,261 @@
+{
+  "interactionModel": {
+    "languageModel": {
+      "invocationName": "horaires de prière",
+      "intents": [
+        {
+          "name": "AMAZON.CancelIntent",
+          "samples": []
+        },
+        {
+          "name": "AMAZON.HelpIntent",
+          "samples": []
+        },
+        {
+          "name": "AMAZON.StopIntent",
+          "samples": []
+        },
+        {
+          "name": "AMAZON.NavigateHomeIntent",
+          "samples": []
+        },
+        {
+          "name": "GetPrayerTimesIntent",
+          "slots": [],
+          "samples": [
+            "quels sont les horaires de prière",
+            "donne moi les horaires de prière",
+            "montre moi les horaires de prière d'aujourd'hui",
+            "quand est la prière",
+            "horaires de prière",
+            "affiche les horaires de prière"
+          ]
+        },
+        {
+          "name": "GetNextPrayerIntent",
+          "slots": [],
+          "samples": [
+            "quelle est la prochaine prière",
+            "quand est la prochaine prière",
+            "dis moi la prochaine prière",
+            "c'est quand la prochaine prière"
+          ]
+        },
+        {
+          "name": "GetSpecificPrayerIntent",
+          "slots": [
+            {
+              "name": "prayerName",
+              "type": "PRAYER_TYPE",
+              "samples": [
+                "{prayerName}",
+                "prière de {prayerName}",
+                "heure de {prayerName}"
+              ]
+            }
+          ],
+          "samples": [
+            "quand est la prière de {prayerName}",
+            "à quelle heure est {prayerName}",
+            "quel est l'horaire de {prayerName}",
+            "dis moi l'heure de {prayerName}"
+          ]
+        },
+        {
+          "name": "SetLocationIntent",
+          "slots": [
+            {
+              "name": "city",
+              "type": "AMAZON.City"
+            },
+            {
+              "name": "country",
+              "type": "AMAZON.Country"
+            }
+          ],
+          "samples": [
+            "change ma localisation pour {city}",
+            "définis la localisation {city}",
+            "ma localisation est {city}",
+            "je suis à {city}",
+            "modifie la localisation pour {city}",
+            "change la ville"
+          ]
+        },
+        {
+          "name": "SetAthanIntent",
+          "slots": [
+            {
+              "name": "athanType",
+              "type": "ATHAN_TYPE"
+            }
+          ],
+          "samples": [
+            "change l'athan pour {athanType}",
+            "utilise l'athan de {athanType}",
+            "je veux l'athan de {athanType}",
+            "change le type d'athan"
+          ]
+        },
+        {
+          "name": "EnableNotificationsIntent",
+          "slots": [],
+          "samples": [
+            "active les notifications",
+            "active les rappels",
+            "je veux les notifications de prière",
+            "active l'athan",
+            "notifie moi pour les prières"
+          ]
+        },
+        {
+          "name": "DisableNotificationsIntent",
+          "slots": [],
+          "samples": [
+            "désactive les notifications",
+            "arrête les rappels",
+            "je ne veux plus de notifications",
+            "désactive l'athan"
+          ]
+        },
+        {
+          "name": "GetQiblaDirectionIntent",
+          "slots": [],
+          "samples": [
+            "où est la qibla",
+            "quelle est la direction de la qibla",
+            "montre moi la qibla",
+            "direction de la mecque",
+            "où est la mecque"
+          ]
+        },
+        {
+          "name": "GetMonthlyScheduleIntent",
+          "slots": [],
+          "samples": [
+            "montre les horaires du mois",
+            "horaires mensuels",
+            "calendrier du mois",
+            "horaires de prière du mois"
+          ]
+        },
+        {
+          "name": "GetDhikrIntent",
+          "slots": [],
+          "samples": [
+            "rappelle moi un dhikr",
+            "dis moi un dhikr",
+            "dhikr du jour",
+            "invocation du jour"
+          ]
+        },
+        {
+          "name": "GetDuaaIntent",
+          "slots": [
+            {
+              "name": "prayerName",
+              "type": "PRAYER_TYPE"
+            }
+          ],
+          "samples": [
+            "invocation pour {prayerName}",
+            "duaa de {prayerName}",
+            "quelle est l'invocation pour {prayerName}"
+          ]
+        },
+        {
+          "name": "GetStatisticsIntent",
+          "slots": [],
+          "samples": [
+            "mes statistiques",
+            "montre mes statistiques de prière",
+            "combien de prières j'ai fait",
+            "statistiques"
+          ]
+        },
+        {
+          "name": "GetSettingsIntent",
+          "slots": [],
+          "samples": [
+            "quels sont les paramètres",
+            "affiche les paramètres",
+            "dis moi les paramètres",
+            "paramètres actuels"
+          ]
+        }
+      ],
+      "types": [
+        {
+          "name": "PRAYER_TYPE",
+          "values": [
+            {
+              "name": {
+                "value": "fajr",
+                "synonyms": ["aube", "prière de l'aube"]
+              }
+            },
+            {
+              "name": {
+                "value": "dhuhr",
+                "synonyms": ["midi", "prière de midi"]
+              }
+            },
+            {
+              "name": {
+                "value": "asr",
+                "synonyms": ["après-midi", "prière de l'après-midi"]
+              }
+            },
+            {
+              "name": {
+                "value": "maghrib",
+                "synonyms": ["coucher du soleil", "prière du coucher"]
+              }
+            },
+            {
+              "name": {
+                "value": "isha",
+                "synonyms": ["nuit", "prière de la nuit"]
+              }
+            }
+          ]
+        },
+        {
+          "name": "ATHAN_TYPE",
+          "values": [
+            {
+              "name": {
+                "value": "makkah",
+                "synonyms": ["la mecque", "mecca"]
+              }
+            },
+            {
+              "name": {
+                "value": "madinah",
+                "synonyms": ["médine", "medina"]
+              }
+            },
+            {
+              "name": {
+                "value": "egypt",
+                "synonyms": ["égypte", "egyptien"]
+              }
+            },
+            {
+              "name": {
+                "value": "aqsa",
+                "synonyms": ["al aqsa", "jerusalem"]
+              }
+            },
+            {
+              "name": {
+                "value": "abdulbasit",
+                "synonyms": ["abdul basit", "abdel basit"]
+              }
+            }
+          ]
+        }
+      ]
+    }
+  }
+}
