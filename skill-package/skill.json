@@ -4,12 +4,12 @@
       "locales": {
         "ar-SA": {
           "name": "أوقات الصلاة",
-          "summary": "عرض أوقات الصلاة اليومية مع الأذان",
-          "description": "تطبيق شامل لعرض أوقات الصلاة الخمسة اليومية على Alexa Show مع إمكانية اختيار الموقع والأذان. يعرض التطبيق ويدجت دائم لأوقات الصلاة ويذكرك بالأذان عند حلول وقت كل صلاة.",
+          "summary": "عرض أوقات الصلاة اليومية مع الأذان والقبلة والإحصائيات",
+          "description": "تطبيق شامل لعرض أوقات الصلاة الخمسة اليومية على Alexa Show مع: أذان بأصوات مختلفة، اتجاه القبلة، التاريخ الهجري، ذكر وأدعية يومية، إحصائيات الصلاة، والجدول الشهري. يعرض التطبيق ويدجت دائم لأوقات الصلاة ويذكرك بالأذان عند حلول وقت كل صلاة.",
           "examplePhrases": [
             "أليكسا، افتحي أوقات الصلاة",
-            "أليكسا، اسألي أوقات الصلاة عن موعد صلاة الظهر",
-            "أليكسا، قولي لأوقات الصلاة غير موقعي"
+            "أليكسا، اسألي أوقات الصلاة أين القبلة",
+            "أليكسا، قولي لأوقات الصلاة ما هي إحصائياتي"
           ],
           "keywords": [
             "صلاة",
@@ -17,7 +17,55 @@
             "مسلم",
             "إسلام",
             "أوقات الصلاة",
-            "القبلة"
+            "القبلة",
+            "ذكر",
+            "دعاء",
+            "تقويم هجري",
+            "رمضان"
+          ]
+        },
+        "fr-FR": {
+          "name": "Horaires de Prière",
+          "summary": "Horaires de prière quotidiens avec athan, qibla et statistiques",
+          "description": "Application complète pour afficher les 5 horaires de prière quotidiens sur Alexa Show avec : athan en différentes voix, direction de la qibla, calendrier islamique, dhikr et invocations quotidiennes, statistiques de prières, et planning mensuel. L'application affiche un widget permanent des horaires et vous rappelle avec l'athan à chaque prière.",
+          "examplePhrases": [
+            "Alexa, ouvre horaires de prière",
+            "Alexa, demande à horaires de prière où est la qibla",
+            "Alexa, dis à horaires de prière montre mes statistiques"
+          ],
+          "keywords": [
+            "prière",
+            "athan",
+            "musulman",
+            "islam",
+            "horaires",
+            "qibla",
+            "dhikr",
+            "duaa",
+            "calendrier islamique",
+            "ramadan"
+          ]
+        },
+        "en-US": {
+          "name": "Prayer Times",
+          "summary": "Daily prayer times with athan, qibla direction and statistics",
+          "description": "Complete application to display the 5 daily prayer times on Alexa Show with: athan in different voices, qibla direction compass, Islamic calendar, daily dhikr and supplications, prayer statistics tracking, and monthly schedule. The app displays a permanent widget of prayer times and reminds you with athan at each prayer time.",
+          "examplePhrases": [
+            "Alexa, open prayer times",
+            "Alexa, ask prayer times where is qibla",
+            "Alexa, tell prayer times show my statistics"
+          ],
+          "keywords": [
+            "prayer",
+            "athan",
+            "muslim",
+            "islam",
+            "salat",
+            "qibla",
+            "dhikr",
+            "duaa",
+            "islamic calendar",
+            "ramadan"
           ]
         }
       },
@@ -73,6 +121,14 @@
       "containsAds": false,
       "locales": {
         "ar-SA": {
+          "privacyPolicyUrl": "https://example.com/privacy",
+          "termsOfUseUrl": "https://example.com/terms"
+        },
+        "fr-FR": {
+          "privacyPolicyUrl": "https://example.com/privacy",
+          "termsOfUseUrl": "https://example.com/terms"
+        },
+        "en-US": {
           "privacyPolicyUrl": "https://example.com/privacy",
           "termsOfUseUrl": "https://example.com/terms"
         }

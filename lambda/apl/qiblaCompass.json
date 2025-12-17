@@ -1,0 +1,158 @@
+{
+  "type": "APL",
+  "version": "2023.3",
+  "description": "Boussole pour afficher la direction de la Qibla",
+  "theme": "dark",
+  "import": [
+    {
+      "name": "alexa-layouts",
+      "version": "1.7.0"
+    }
+  ],
+  "resources": [
+    {
+      "colors": {
+        "colorPrimary": "#1A5F3F",
+        "colorAccent": "#FFD700",
+        "colorBackground": "#0F1419",
+        "colorText": "#FFFFFF",
+        "colorCompass": "#2C8C5F"
+      }
+    }
+  ],
+  "mainTemplate": {
+    "parameters": [
+      "qiblaData"
+    ],
+    "items": [
+      {
+        "type": "Container",
+        "width": "100%",
+        "height": "100%",
+        "backgroundColor": "@colorBackground",
+        "alignItems": "center",
+        "justifyContent": "center",
+        "direction": "column",
+        "items": [
+          {
+            "type": "Text",
+            "text": "🕌 اتجاه القبلة",
+            "fontSize": "56dp",
+            "fontWeight": "700",
+            "color": "@colorText",
+            "paddingBottom": "40dp"
+          },
+          {
+            "type": "Text",
+            "text": "${qiblaData.properties.city}",
+            "fontSize": "40dp",
+            "color": "@colorAccent",
+            "paddingBottom": "60dp"
+          },
+          {
+            "type": "Container",
+            "width": "500dp",
+            "height": "500dp",
+            "alignItems": "center",
+            "justifyContent": "center",
+            "items": [
+              {
+                "type": "Frame",
+                "width": "100%",
+                "height": "100%",
+                "borderRadius": "250dp",
+                "borderWidth": "8dp",
+                "borderColor": "@colorCompass",
+                "backgroundColor": "#1A1F26",
+                "alignItems": "center",
+                "justifyContent": "center",
+                "items": [
+                  {
+                    "type": "Container",
+                    "width": "100%",
+                    "height": "100%",
+                    "alignItems": "center",
+                    "justifyContent": "center",
+                    "transform": [
+                      {
+                        "rotate": "${qiblaData.properties.degrees}"
+                      }
+                    ],
+                    "items": [
+                      {
+                        "type": "Text",
+                        "text": "⬆",
+                        "fontSize": "120dp",
+                        "color": "@colorAccent"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "Container",
+                    "position": "absolute",
+                    "alignItems": "center",
+                    "justifyContent": "center",
+                    "items": [
+                      {
+                        "type": "Text",
+                        "text": "🕋",
+                        "fontSize": "80dp"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "Container",
+            "paddingTop": "60dp",
+            "direction": "column",
+            "alignItems": "center",
+            "spacing": "20dp",
+            "items": [
+              {
+                "type": "Text",
+                "text": "${qiblaData.properties.direction}",
+                "fontSize": "64dp",
+                "fontWeight": "700",
+                "color": "@colorAccent"
+              },
+              {
+                "type": "Text",
+                "text": "${qiblaData.properties.degrees}°",
+                "fontSize": "48dp",
+                "color": "@colorText"
+              },
+              {
+                "type": "Text",
+                "text": "المسافة إلى الكعبة: ${qiblaData.properties.distance} كم",
+                "fontSize": "32dp",
+                "color": "@colorText",
+                "paddingTop": "30dp"
+              }
+            ]
+          },
+          {
+            "type": "Container",
+            "paddingTop": "50dp",
+            "width": "80%",
+            "padding": "30dp",
+            "backgroundColor": "@colorPrimary",
+            "borderRadius": "20dp",
+            "alignItems": "center",
+            "items": [
+              {
+                "type": "Text",
+                "text": "💡 وَجِّهْ وَجْهَكَ شَطْرَ الْمَسْجِدِ الْحَرَامِ",
+                "fontSize": "28dp",
+                "color": "@colorText",
+                "textAlign": "center"
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}

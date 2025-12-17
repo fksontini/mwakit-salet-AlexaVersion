@@ -1,0 +1,388 @@
+{
+  "type": "APL",
+  "version": "2023.3",
+  "description": "Widget optimisé pour Echo Show 15 en mode paysage",
+  "license": "Copyright 2024",
+  "theme": "dark",
+  "import": [
+    {
+      "name": "alexa-layouts",
+      "version": "1.7.0"
+    }
+  ],
+  "resources": [
+    {
+      "colors": {
+        "colorPrimary": "#1A5F3F",
+        "colorSecondary": "#2C8C5F",
+        "colorAccent": "#FFD700",
+        "colorBackground": "#0F1419",
+        "colorCardBg": "#1A1F26",
+        "colorText": "#FFFFFF",
+        "colorTextSecondary": "#B0B0B0",
+        "colorHighlight": "#2C8C5F"
+      },
+      "dimensions": {
+        "headerHeight": "140dp",
+        "prayerCardWidth": "280dp",
+        "prayerCardHeight": "200dp",
+        "spacing": "30dp",
+        "sidebarWidth": "350dp"
+      }
+    }
+  ],
+  "styles": {
+    "headerStyle": {
+      "values": [
+        {
+          "color": "@colorText",
+          "fontSize": "56dp",
+          "fontWeight": "700"
+        }
+      ]
+    },
+    "cityStyle": {
+      "values": [
+        {
+          "color": "@colorTextSecondary",
+          "fontSize": "40dp"
+        }
+      ]
+    },
+    "dateStyle": {
+      "values": [
+        {
+          "color": "@colorTextSecondary",
+          "fontSize": "32dp"
+        }
+      ]
+    },
+    "prayerNameStyle": {
+      "values": [
+        {
+          "color": "@colorText",
+          "fontSize": "48dp",
+          "fontWeight": "600"
+        }
+      ]
+    },
+    "prayerTimeStyle": {
+      "values": [
+        {
+          "color": "@colorAccent",
+          "fontSize": "56dp",
+          "fontWeight": "700"
+        }
+      ]
+    },
+    "sectionTitleStyle": {
+      "values": [
+        {
+          "color": "@colorAccent",
+          "fontSize": "36dp",
+          "fontWeight": "600"
+        }
+      ]
+    },
+    "infoTextStyle": {
+      "values": [
+        {
+          "color": "@colorText",
+          "fontSize": "28dp"
+        }
+      ]
+    }
+  },
+  "layouts": {
+    "PrayerCard": {
+      "parameters": [
+        "prayerName",
+        "prayerTime",
+        "prayerIcon",
+        "isNext"
+      ],
+      "item": {
+        "type": "Container",
+        "width": "@prayerCardWidth",
+        "height": "@prayerCardHeight",
+        "backgroundColor": "${isNext ? '@colorHighlight' : '@colorCardBg'}",
+        "borderRadius": "20dp",
+        "padding": "25dp",
+        "direction": "column",
+        "alignItems": "center",
+        "justifyContent": "center",
+        "spacing": "15dp",
+        "items": [
+          {
+            "type": "Text",
+            "text": "${prayerIcon}",
+            "fontSize": "64dp"
+          },
+          {
+            "type": "Text",
+            "text": "${prayerName}",
+            "style": "prayerNameStyle",
+            "fontSize": "44dp"
+          },
+          {
+            "type": "Text",
+            "text": "${prayerTime}",
+            "style": "prayerTimeStyle",
+            "fontSize": "52dp"
+          },
+          {
+            "when": "${isNext}",
+            "type": "Text",
+            "text": "الصلاة القادمة",
+            "color": "@colorAccent",
+            "fontSize": "26dp"
+          }
+        ]
+      }
+    },
+    "InfoSidebar": {
+      "parameters": [
+        "hijriDate",
+        "qiblaDirection",
+        "todayEvent",
+        "statistics"
+      ],
+      "item": {
+        "type": "Container",
+        "width": "@sidebarWidth",
+        "height": "100%",
+        "backgroundColor": "@colorCardBg",
+        "padding": "30dp",
+        "direction": "column",
+        "spacing": "30dp",
+        "items": [
+          {
+            "type": "Text",
+            "text": "معلومات",
+            "style": "sectionTitleStyle"
+          },
+          {
+            "type": "Container",
+            "direction": "column",
+            "spacing": "15dp",
+            "items": [
+              {
+                "type": "Text",
+                "text": "📅 التاريخ الهجري",
+                "style": "infoTextStyle",
+                "fontSize": "30dp",
+                "color": "@colorAccent"
+              },
+              {
+                "type": "Text",
+                "text": "${hijriDate}",
+                "style": "infoTextStyle",
+                "fontSize": "26dp"
+              }
+            ]
+          },
+          {
+            "type": "Container",
+            "direction": "column",
+            "spacing": "15dp",
+            "items": [
+              {
+                "type": "Text",
+                "text": "🧭 اتجاه القبلة",
+                "style": "infoTextStyle",
+                "fontSize": "30dp",
+                "color": "@colorAccent"
+              },
+              {
+                "type": "Text",
+                "text": "${qiblaDirection}",
+                "style": "infoTextStyle",
+                "fontSize": "26dp"
+              }
+            ]
+          },
+          {
+            "when": "${todayEvent}",
+            "type": "Container",
+            "direction": "column",
+            "spacing": "15dp",
+            "padding": "20dp",
+            "backgroundColor": "@colorPrimary",
+            "borderRadius": "15dp",
+            "items": [
+              {
+                "type": "Text",
+                "text": "🌙 مناسبة إسلامية",
+                "style": "infoTextStyle",
+                "fontSize": "30dp",
+                "color": "@colorAccent"
+              },
+              {
+                "type": "Text",
+                "text": "${todayEvent}",
+                "style": "infoTextStyle",
+                "fontSize": "28dp",
+                "fontWeight": "600"
+              }
+            ]
+          },
+          {
+            "type": "Container",
+            "direction": "column",
+            "spacing": "15dp",
+            "items": [
+              {
+                "type": "Text",
+                "text": "📊 إحصائيات اليوم",
+                "style": "infoTextStyle",
+                "fontSize": "30dp",
+                "color": "@colorAccent"
+              },
+              {
+                "type": "Text",
+                "text": "${statistics.completed} / ${statistics.total}",
+                "style": "prayerTimeStyle",
+                "fontSize": "44dp"
+              },
+              {
+                "type": "Container",
+                "width": "100%",
+                "height": "15dp",
+                "backgroundColor": "#333",
+                "borderRadius": "7dp",
+                "items": [
+                  {
+                    "type": "Frame",
+                    "width": "${statistics.percentage}%",
+                    "height": "100%",
+                    "backgroundColor": "@colorAccent",
+                    "borderRadius": "7dp"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    }
+  },
+  "mainTemplate": {
+    "parameters": [
+      "prayerTimesData"
+    ],
+    "items": [
+      {
+        "type": "Container",
+        "width": "100%",
+        "height": "100%",
+        "backgroundColor": "@colorBackground",
+        "direction": "row",
+        "items": [
+          {
+            "type": "Container",
+            "grow": 1,
+            "padding": "40dp",
+            "direction": "column",
+            "spacing": "30dp",
+            "items": [
+              {
+                "type": "Container",
+                "width": "100%",
+                "direction": "row",
+                "alignItems": "center",
+                "justifyContent": "spaceBetween",
+                "items": [
+                  {
+                    "type": "Container",
+                    "direction": "column",
+                    "spacing": "10dp",
+                    "items": [
+                      {
+                        "type": "Text",
+                        "text": "🕌 أوقات الصلاة",
+                        "style": "headerStyle"
+                      },
+                      {
+                        "type": "Text",
+                        "text": "${prayerTimesData.properties.city}",
+                        "style": "cityStyle"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "Container",
+                    "direction": "column",
+                    "alignItems": "end",
+                    "spacing": "10dp",
+                    "items": [
+                      {
+                        "type": "Text",
+                        "text": "${prayerTimesData.properties.gregorianDate}",
+                        "style": "dateStyle"
+                      },
+                      {
+                        "type": "Text",
+                        "text": "${prayerTimesData.properties.hijriDate}",
+                        "style": "dateStyle",
+                        "color": "@colorAccent"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "Container",
+                "width": "100%",
+                "grow": 1,
+                "items": [
+                  {
+                    "type": "Container",
+                    "width": "100%",
+                    "height": "100%",
+                    "direction": "row",
+                    "justifyContent": "spaceAround",
+                    "alignItems": "center",
+                    "wrap": "wrap",
+                    "spacing": "@spacing",
+                    "items": [
+                      {
+                        "type": "Container",
+                        "data": "${prayerTimesData.properties.prayers}",
+                        "direction": "row",
+                        "spacing": "@spacing",
+                        "wrap": "wrap",
+                        "items": [
+                          {
+                            "type": "PrayerCard",
+                            "prayerName": "${data.name}",
+                            "prayerTime": "${data.time}",
+                            "prayerIcon": "${data.icon}",
+                            "isNext": "${data.isNext}"
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "Text",
+                "text": "🤲 حَافِظُوا عَلَى الصَّلَوَاتِ وَالصَّلَاةِ الْوُسْطَىٰ",
+                "color": "@colorAccent",
+                "fontSize": "32dp",
+                "textAlign": "center"
+              }
+            ]
+          },
+          {
+            "type": "InfoSidebar",
+            "hijriDate": "${prayerTimesData.properties.hijriDate}",
+            "qiblaDirection": "${prayerTimesData.properties.qiblaDirection}",
+            "todayEvent": "${prayerTimesData.properties.todayEvent}",
+            "statistics": "${prayerTimesData.properties.statistics}"
+          }
+        ]
+      }
+    ]
+  }
+}

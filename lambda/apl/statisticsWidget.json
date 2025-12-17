@@ -1,0 +1,339 @@
+{
+  "type": "APL",
+  "version": "2023.3",
+  "description": "Widget pour afficher les statistiques de prières",
+  "theme": "dark",
+  "import": [
+    {
+      "name": "alexa-layouts",
+      "version": "1.7.0"
+    }
+  ],
+  "resources": [
+    {
+      "colors": {
+        "colorPrimary": "#1A5F3F",
+        "colorAccent": "#FFD700",
+        "colorBackground": "#0F1419",
+        "colorCardBg": "#1A1F26",
+        "colorText": "#FFFFFF",
+        "colorSuccess": "#2ECC71",
+        "colorProgress": "#3498DB"
+      }
+    }
+  ],
+  "layouts": {
+    "StatCard": {
+      "parameters": [
+        "title",
+        "value",
+        "subtitle",
+        "icon"
+      ],
+      "item": {
+        "type": "Container",
+        "width": "350dp",
+        "height": "250dp",
+        "backgroundColor": "@colorCardBg",
+        "borderRadius": "20dp",
+        "padding": "30dp",
+        "direction": "column",
+        "alignItems": "center",
+        "justifyContent": "center",
+        "spacing": "15dp",
+        "items": [
+          {
+            "type": "Text",
+            "text": "${icon}",
+            "fontSize": "64dp"
+          },
+          {
+            "type": "Text",
+            "text": "${title}",
+            "fontSize": "32dp",
+            "color": "@colorText"
+          },
+          {
+            "type": "Text",
+            "text": "${value}",
+            "fontSize": "56dp",
+            "fontWeight": "700",
+            "color": "@colorAccent"
+          },
+          {
+            "when": "${subtitle}",
+            "type": "Text",
+            "text": "${subtitle}",
+            "fontSize": "24dp",
+            "color": "@colorProgress"
+          }
+        ]
+      }
+    },
+    "PrayerProgressBar": {
+      "parameters": [
+        "prayerName",
+        "count",
+        "maxCount"
+      ],
+      "item": {
+        "type": "Container",
+        "width": "100%",
+        "direction": "row",
+        "alignItems": "center",
+        "spacing": "20dp",
+        "paddingTop": "10dp",
+        "paddingBottom": "10dp",
+        "items": [
+          {
+            "type": "Text",
+            "text": "${prayerName}",
+            "fontSize": "32dp",
+            "color": "@colorText",
+            "width": "150dp"
+          },
+          {
+            "type": "Container",
+            "grow": 1,
+            "height": "25dp",
+            "backgroundColor": "#333",
+            "borderRadius": "12dp",
+            "items": [
+              {
+                "type": "Frame",
+                "width": "${(count / maxCount) * 100}%",
+                "height": "100%",
+                "backgroundColor": "@colorSuccess",
+                "borderRadius": "12dp"
+              }
+            ]
+          },
+          {
+            "type": "Text",
+            "text": "${count}",
+            "fontSize": "32dp",
+            "fontWeight": "700",
+            "color": "@colorAccent",
+            "width": "80dp",
+            "textAlign": "right"
+          }
+        ]
+      }
+    }
+  },
+  "mainTemplate": {
+    "parameters": [
+      "statisticsData"
+    ],
+    "items": [
+      {
+        "type": "Container",
+        "width": "100%",
+        "height": "100%",
+        "backgroundColor": "@colorBackground",
+        "padding": "50dp",
+        "direction": "column",
+        "items": [
+          {
+            "type": "Text",
+            "text": "📊 إحصائيات الصلاة",
+            "fontSize": "64dp",
+            "fontWeight": "700",
+            "color": "@colorText",
+            "paddingBottom": "40dp"
+          },
+          {
+            "type": "Container",
+            "width": "100%",
+            "direction": "row",
+            "justifyContent": "spaceAround",
+            "spacing": "30dp",
+            "paddingBottom": "50dp",
+            "items": [
+              {
+                "type": "StatCard",
+                "title": "إجمالي الصلوات",
+                "value": "${statisticsData.properties.total}",
+                "icon": "📿"
+              },
+              {
+                "type": "StatCard",
+                "title": "اليوم",
+                "value": "${statisticsData.properties.todayCompleted}/${statisticsData.properties.todayTotal}",
+                "subtitle": "${statisticsData.properties.todayPercentage}%",
+                "icon": "📅"
+              },
+              {
+                "type": "StatCard",
+                "title": "سلسلة متتالية",
+                "value": "${statisticsData.properties.streak}",
+                "subtitle": "أيام",
+                "icon": "🔥"
+              },
+              {
+                "type": "StatCard",
+                "title": "أطول سلسلة",
+                "value": "${statisticsData.properties.longestStreak}",
+                "subtitle": "أيام",
+                "icon": "🏆"
+              }
+            ]
+          },
+          {
+            "type": "Container",
+            "width": "100%",
+            "backgroundColor": "@colorCardBg",
+            "borderRadius": "20dp",
+            "padding": "40dp",
+            "direction": "column",
+            "spacing": "25dp",
+            "items": [
+              {
+                "type": "Text",
+                "text": "إحصائيات حسب الصلاة",
+                "fontSize": "44dp",
+                "color": "@colorAccent",
+                "paddingBottom": "20dp"
+              },
+              {
+                "type": "Container",
+                "data": "${statisticsData.properties.byPrayer}",
+                "direction": "column",
+                "spacing": "15dp",
+                "items": [
+                  {
+                    "type": "PrayerProgressBar",
+                    "prayerName": "${data.nameAr}",
+                    "count": "${data.count}",
+                    "maxCount": "${statisticsData.properties.total / 5}"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "Container",
+            "paddingTop": "40dp",
+            "width": "100%",
+            "direction": "row",
+            "justifyContent": "spaceAround",
+            "items": [
+              {
+                "type": "Container",
+                "width": "45%",
+                "backgroundColor": "@colorCardBg",
+                "borderRadius": "20dp",
+                "padding": "30dp",
+                "direction": "column",
+                "alignItems": "center",
+                "spacing": "15dp",
+                "items": [
+                  {
+                    "type": "Text",
+                    "text": "📆 هذا الأسبوع",
+                    "fontSize": "36dp",
+                    "color": "@colorText"
+                  },
+                  {
+                    "type": "Text",
+                    "text": "${statisticsData.properties.weekCompleted}/${statisticsData.properties.weekTotal}",
+                    "fontSize": "48dp",
+                    "fontWeight": "700",
+                    "color": "@colorAccent"
+                  },
+                  {
+                    "type": "Container",
+                    "width": "100%",
+                    "height": "20dp",
+                    "backgroundColor": "#333",
+                    "borderRadius": "10dp",
+                    "items": [
+                      {
+                        "type": "Frame",
+                        "width": "${statisticsData.properties.weekPercentage}%",
+                        "height": "100%",
+                        "backgroundColor": "@colorProgress",
+                        "borderRadius": "10dp"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "Text",
+                    "text": "${statisticsData.properties.weekPercentage}%",
+                    "fontSize": "32dp",
+                    "color": "@colorProgress"
+                  }
+                ]
+              },
+              {
+                "type": "Container",
+                "width": "45%",
+                "backgroundColor": "@colorCardBg",
+                "borderRadius": "20dp",
+                "padding": "30dp",
+                "direction": "column",
+                "alignItems": "center",
+                "spacing": "15dp",
+                "items": [
+                  {
+                    "type": "Text",
+                    "text": "📅 هذا الشهر",
+                    "fontSize": "36dp",
+                    "color": "@colorText"
+                  },
+                  {
+                    "type": "Text",
+                    "text": "${statisticsData.properties.monthCompleted}/${statisticsData.properties.monthTotal}",
+                    "fontSize": "48dp",
+                    "fontWeight": "700",
+                    "color": "@colorAccent"
+                  },
+                  {
+                    "type": "Container",
+                    "width": "100%",
+                    "height": "20dp",
+                    "backgroundColor": "#333",
+                    "borderRadius": "10dp",
+                    "items": [
+                      {
+                        "type": "Frame",
+                        "width": "${statisticsData.properties.monthPercentage}%",
+                        "height": "100%",
+                        "backgroundColor": "@colorSuccess",
+                        "borderRadius": "10dp"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "Text",
+                    "text": "${statisticsData.properties.monthPercentage}%",
+                    "fontSize": "32dp",
+                    "color": "@colorSuccess"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "Container",
+            "paddingTop": "40dp",
+            "width": "100%",
+            "padding": "30dp",
+            "backgroundColor": "@colorPrimary",
+            "borderRadius": "20dp",
+            "alignItems": "center",
+            "items": [
+              {
+                "type": "Text",
+                "text": "🌟 ما شاء الله! استمر في المحافظة على الصلاة",
+                "fontSize": "36dp",
+                "color": "@colorText",
+                "textAlign": "center"
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}
