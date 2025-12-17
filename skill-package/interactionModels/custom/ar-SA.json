@@ -1,0 +1,215 @@
+{
+  "interactionModel": {
+    "languageModel": {
+      "invocationName": "أوقات الصلاة",
+      "intents": [
+        {
+          "name": "AMAZON.CancelIntent",
+          "samples": []
+        },
+        {
+          "name": "AMAZON.HelpIntent",
+          "samples": []
+        },
+        {
+          "name": "AMAZON.StopIntent",
+          "samples": []
+        },
+        {
+          "name": "AMAZON.NavigateHomeIntent",
+          "samples": []
+        },
+        {
+          "name": "GetPrayerTimesIntent",
+          "slots": [],
+          "samples": [
+            "ما هي أوقات الصلاة",
+            "أخبريني بأوقات الصلاة",
+            "عرفيني أوقات الصلاة اليوم",
+            "متى الصلاة",
+            "أوقات الصلاة",
+            "اعرضي أوقات الصلاة"
+          ]
+        },
+        {
+          "name": "GetNextPrayerIntent",
+          "slots": [],
+          "samples": [
+            "متى الصلاة القادمة",
+            "ما هي الصلاة القادمة",
+            "متى موعد الصلاة القادمة",
+            "أخبريني بالصلاة القادمة",
+            "متى أصلي"
+          ]
+        },
+        {
+          "name": "GetSpecificPrayerIntent",
+          "slots": [
+            {
+              "name": "prayerName",
+              "type": "PRAYER_TYPE",
+              "samples": [
+                "{prayerName}",
+                "صلاة {prayerName}",
+                "وقت {prayerName}"
+              ]
+            }
+          ],
+          "samples": [
+            "متى صلاة {prayerName}",
+            "متى موعد صلاة {prayerName}",
+            "ما هو وقت صلاة {prayerName}",
+            "أخبريني بموعد صلاة {prayerName}",
+            "متى وقت {prayerName}",
+            "موعد {prayerName}"
+          ]
+        },
+        {
+          "name": "SetLocationIntent",
+          "slots": [
+            {
+              "name": "city",
+              "type": "AMAZON.City"
+            },
+            {
+              "name": "country",
+              "type": "AMAZON.Country"
+            }
+          ],
+          "samples": [
+            "غير موقعي إلى {city}",
+            "حدد الموقع {city}",
+            "موقعي {city}",
+            "أنا في {city}",
+            "عدل الموقع إلى {city}",
+            "اضبط الموقع على {city}",
+            "غير المدينة إلى {city}",
+            "غير الموقع"
+          ]
+        },
+        {
+          "name": "SetAthanIntent",
+          "slots": [
+            {
+              "name": "athanType",
+              "type": "ATHAN_TYPE"
+            }
+          ],
+          "samples": [
+            "غير الأذان إلى {athanType}",
+            "اضبط الأذان على {athanType}",
+            "استخدم أذان {athanType}",
+            "أريد أذان {athanType}",
+            "غير نوع الأذان",
+            "اختر أذان {athanType}"
+          ]
+        },
+        {
+          "name": "EnableNotificationsIntent",
+          "slots": [],
+          "samples": [
+            "فعل التنبيهات",
+            "شغل التذكير",
+            "أريد تنبيهات الصلاة",
+            "فعل الأذان",
+            "شغل الإشعارات",
+            "نبهني بأوقات الصلاة"
+          ]
+        },
+        {
+          "name": "DisableNotificationsIntent",
+          "slots": [],
+          "samples": [
+            "أوقف التنبيهات",
+            "أغلق التذكير",
+            "لا أريد تنبيهات",
+            "أوقف الأذان",
+            "أغلق الإشعارات"
+          ]
+        },
+        {
+          "name": "GetSettingsIntent",
+          "slots": [],
+          "samples": [
+            "ما هي الإعدادات",
+            "اعرض الإعدادات",
+            "أخبريني بالإعدادات",
+            "الإعدادات الحالية"
+          ]
+        }
+      ],
+      "types": [
+        {
+          "name": "PRAYER_TYPE",
+          "values": [
+            {
+              "name": {
+                "value": "الفجر",
+                "synonyms": ["فجر", "صلاة الفجر"]
+              }
+            },
+            {
+              "name": {
+                "value": "الظهر",
+                "synonyms": ["ظهر", "صلاة الظهر"]
+              }
+            },
+            {
+              "name": {
+                "value": "العصر",
+                "synonyms": ["عصر", "صلاة العصر"]
+              }
+            },
+            {
+              "name": {
+                "value": "المغرب",
+                "synonyms": ["مغرب", "صلاة المغرب"]
+              }
+            },
+            {
+              "name": {
+                "value": "العشاء",
+                "synonyms": ["عشاء", "صلاة العشاء"]
+              }
+            }
+          ]
+        },
+        {
+          "name": "ATHAN_TYPE",
+          "values": [
+            {
+              "name": {
+                "value": "مكة",
+                "synonyms": ["أذان مكة", "الحرم المكي"]
+              }
+            },
+            {
+              "name": {
+                "value": "المدينة",
+                "synonyms": ["أذان المدينة", "الحرم المدني"]
+              }
+            },
+            {
+              "name": {
+                "value": "مصر",
+                "synonyms": ["أذان مصر", "المصري"]
+              }
+            },
+            {
+              "name": {
+                "value": "الأقصى",
+                "synonyms": ["أذان الأقصى", "القدس"]
+              }
+            },
+            {
+              "name": {
+                "value": "عبدالباسط",
+                "synonyms": ["الشيخ عبدالباسط", "عبد الباسط"]
+              }
+            }
+          ]
+        }
+      ]
+    }
+  }
+}

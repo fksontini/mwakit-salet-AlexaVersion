@@ -1,0 +1,48 @@
+# Node modules
+node_modules/
+lambda/node_modules/
+
+# ASK CLI
+.ask/
+ask-resources.json
+
+# AWS
+.aws-sam/
+
+# Environment variables
+.env
+.env.local
+.env.*.local
+
+# Logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# IDEs
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Build outputs
+dist/
+build/
+*.zip
+
+# Temporary files
+tmp/
+temp/
+
+# AWS credentials
+credentials
+config
+
+# DynamoDB local
+.dynamodb/
