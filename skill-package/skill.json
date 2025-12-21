@@ -76,9 +76,6 @@
     },
     "apis": {
       "custom": {
-        "endpoint": {
-          "sourceDir": "lambda"
-        },
         "interfaces": [
           {
             "type": "ALEXA_PRESENTATION_APL"
