@@ -46,12 +46,7 @@
           "slots": [
             {
               "name": "prayerName",
-              "type": "PRAYER_TYPE",
-              "samples": [
-                "{prayerName}",
-                "{prayerName} prayer",
-                "time for {prayerName}"
-              ]
+              "type": "PRAYER_TYPE"
             }
           ],
           "samples": [
