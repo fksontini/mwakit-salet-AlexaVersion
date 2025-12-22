@@ -3,9 +3,6 @@ Transform: AWS::Serverless-2016-10-31
 Description: 'CloudFormation template for Prayer Times Alexa Skill'
 
 Parameters:
-  SkillId:
-    Type: String
-    Description: Alexa Skill ID
   LambdaRuntime:
     Type: String
     Default: nodejs18.x
