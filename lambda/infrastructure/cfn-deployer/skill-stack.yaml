@@ -46,20 +46,6 @@ Resources:
       Runtime: !Ref LambdaRuntime
       Role: !GetAtt AlexaSkillIAMRole.Arn
       MemorySize: 512
-      Timeout: 10
-      Role: !GetAtt AlexaSkillFunctionRole.Arn
-      Environment:
-        Variables:
-          DYNAMODB_TABLE_NAME: !Ref PrayerTimesUserDataTable
-          PRAYER_API_BASE: 'http://api.aladhan.com/v1'
-          LOG_LEVEL: 'info'
-      Tags:
-        Application: PrayerTimesSkill
-        Environment: Production
-
-  # CloudWatch Log Group
-  AlexaSkillFunctionLogGroup:
-    Type: AWS::Logs::LogGroup
       Timeout: 60
   AlexaSkillFunctionEventPermission:
     Type: AWS::Lambda::Permission

@@ -92,7 +92,7 @@
         "name": "alexa::devices:all:geolocation:read"
       },
       {
-        "name": "alexa::devices:all:address:country_and_postal_code:read"
+        "name": "alexa::devices:all:address:full:read"
       },
       {
         "name": "alexa::alerts:reminders:skill:readwrite"
