@@ -48,7 +48,6 @@ Resources:
   AlexaSkillFunctionRole:
     Type: AWS::IAM::Role
     Properties:
-      RoleName: PrayerTimesAlexaSkillRole
       AssumeRolePolicyDocument:
         Version: '2012-10-17'
         Statement:
