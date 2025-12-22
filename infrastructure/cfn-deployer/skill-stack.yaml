@@ -108,11 +108,6 @@ Resources:
           DYNAMODB_TABLE_NAME: !Ref PrayerTimesUserDataTable
           PRAYER_API_BASE: 'http://api.aladhan.com/v1'
           LOG_LEVEL: 'info'
-      Events:
-        AlexaSkillEvent:
-          Type: AlexaSkill
-          Properties:
-            SkillId: !Ref SkillId
       Tags:
         Application: PrayerTimesSkill
         Environment: Production
